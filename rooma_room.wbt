@@ -1,0 +1,186 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/bedroom/protos/Bed.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/Monitor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/Keyboard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/plants/protos/PottedTree.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/living_room_furniture/protos/Armchair.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1986351182884659 -0.21404484392586678 0.9564146039094544 4.742550853078987
+  position -0.9106187026645958 4.535402134400423 2.428862654784114
+}
+Robot {
+  translation -0.6095739056322282 0.16879690041715986 0.03313035909119902
+  rotation -0.00974130485006725 0.014637791734438249 -0.9998454090673005 2.157751408426742
+  children [
+    TouchSensor {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.4 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.175
+          }
+        }
+      ]
+      name "my_bumper"
+      boundingObject Cylinder {
+        height 0.05
+        radius 0.175
+      }
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0 0.14 -0.04
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.8 1
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.02
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject Sphere {
+        radius 0.02
+      }
+      physics Physics {
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -701.1318824793907
+        anchor -0.14 -0.03 -0.03
+      }
+      device [
+        RotationalMotor {
+          name "left_wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.14 -0.03 -0.03
+        rotation 7.850447875279516e-17 1 -3.925223937639758e-17 1.5707999999999998
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.6 0.8
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.03
+            }
+          }
+        ]
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.03
+        }
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 725.9873211021597
+        anchor 0.14 -0.03 -0.03
+      }
+      device [
+        RotationalMotor {
+          name "right_wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.14 -0.03 -0.03
+        rotation 7.850447875279517e-17 1 0 1.5707999999999998
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.8 1
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject Cylinder {
+          height 0.02
+          radius 0.03
+        }
+        physics Physics {
+        }
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+      }
+      geometry Cylinder {
+        height 0.08
+        radius 0.17
+      }
+    }
+  ]
+  name "myRoomba"
+  boundingObject Cylinder {
+    height 0.08
+    radius 0.17
+  }
+  physics Physics {
+  }
+  controller "roomba_brain"
+}
+Armchair {
+  translation -1.79 1.96 0
+  rotation 0 0 1 -1.5707953071795862
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 -0.02
+  floorSize 5 5
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallHeight 0.2
+}
+PottedTree {
+  translation 2.17 -0.83 0
+}
+Keyboard {
+  translation 1.92 -1.81 0.74
+}
+Monitor {
+  translation 2.24 -1.78 0.74
+  rotation 0 0 1 3.14159
+}
+Desk {
+  translation 2.05 -1.72 0
+}
+Bed {
+  translation -1.44 -1.59 0
+}
