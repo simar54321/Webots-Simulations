@@ -1,0 +1,107 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/traffic/protos/PedestrianCrossing.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.6975608825961299 -0.6941431440143734 -0.17769105405041952 5.754054225006403
+  position -18.088916996968756 -4.986836167883396 7.5139985678376595
+}
+DEF boom_barrier Robot {
+  translation -0.9653 0.5884 0.9
+  rotation 0 0 -1 1.57079
+  children [
+    DistanceSensor {
+      translation 0.611381 0.00919445 0.624525
+      rotation -0.6182098920024507 0.43651792374294457 0.6536578858098994 -2.270785307179586
+      name "entry_sensor"
+      type "laser"
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.9 1 0.4
+        roughness 1
+      }
+      geometry Cylinder {
+        height 1.6
+        radius 0.09
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.6
+        maxStop 3.14
+      }
+      device [
+        DEF barrier_motor RotationalMotor {
+          name "barrier_motor"
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.9 0 0.62
+        rotation 0 1 0 0
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.3 0.1
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 1.9 0.1 0.1
+            }
+          }
+        ]
+      }
+    }
+  ]
+  name "boom_barrier"
+  controller "boom_barrier_controller"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.264414 0.150795 1.9984e-15
+  floorSize 15 10
+  floorTileSize 0.1 0.5
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallThickness 0.03
+  wallHeight 0.6
+}
+PedestrianCrossing {
+  translation 1.65 0 -0.152405
+  size 7 2
+}
+Pedestrian {
+  translation -2.6792000000000002 -0.0217 1.3396
+  controllerArgs [
+    "--speed=0.8"
+    "--trajectory=-3.14 -0.0217,6 -0.0217"
+  ]
+  enableBoundingObject TRUE
+  rightLegAngle 0.2551272727272728
+  rightLowerLegAngle 0.15134545454545464
+  rightFootAngle 0.373672727272727
+  leftLegAngle -1.0983999999999996
+  leftLowerLegAngle 1.5946545454545447
+  leftFootAngle -0.09741818181818201
+  rightArmAngle -0.3959272727272729
+  rightLowerArmAngle -0.5450181818181815
+  rightHandAngle -0.2263636363636362
+  leftArmAngle 0.5913454545454545
+  leftLowerArmAngle -0.6697454545454543
+  leftHandAngle 0.1275636363636364
+  headAngle 0.008509090909090964
+}
